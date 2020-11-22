@@ -1,6 +1,6 @@
 "use strict";
 
-const newLogoutButton = new LogoutButton(); {
+const newLogoutButton = new LogoutButton(); 
   newLogoutButton.action = () => ApiConnector.logout((response) => {
   if (response.success) {
     location.reload();
@@ -22,11 +22,11 @@ function getStocks() {
        }
    })
 }
-
-setInterval(getStocks(), 60000);
+getStocks();
+setInterval(getStocks, 60000);
 
  const money = new MoneyManager(); 
- money.addMoneyCallback = () => ApiConnector.addMoney(data, (response) => {
+ money.addMoneyCallback = data => ApiConnector.addMoney(data, (response) => {
    if (response.success) {
      ProfileWidget.showProfile(response.data);
      money.setMessage(response.success, `Баланс пополнен на ${data.amount} ${data.currency}`);
@@ -34,9 +34,8 @@ setInterval(getStocks(), 60000);
        money.setMessage(response.success, `${response.error}`);
    }
 })
-}
 
-money.conversionMoneyCallback = () => ApiConnector.convertMoney(data, (response) => {
+money.conversionMoneyCallback = data => ApiConnector.convertMoney(data, (response) => {
    if (response.success) {
       ProfileWidget.showProfile(response.data);
       money.setMessage(response.success, `Успешная конвертация`);
@@ -47,7 +46,7 @@ money.conversionMoneyCallback = () => ApiConnector.convertMoney(data, (response)
 
 
 
-money.sendMoneyCallback = () => ApiConnector.transferMoney(data, (response) => {
+money.sendMoneyCallback = data => ApiConnector.transferMoney(data, (response) => {
    if (response.success) {
       ProfileWidget.showProfile(response.data);
       money.setMessage(response.success, `Успешный перевод`);
