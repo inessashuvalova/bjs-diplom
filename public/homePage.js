@@ -75,7 +75,7 @@ favorites.addUserCallback = data => ApiConnector.addUserToFavorites(data, (respo
   }
 })
 
-favorites.removeUserCallback = () => ApiConnector.removeUserFromFavorites(data, (response) => {
+favorites.removeUserCallback = data => ApiConnector.removeUserFromFavorites(data, (response) => {
    if (response.success) {
       favorites.clearTable();
             favorites.fillTable(response.data);
